@@ -27,7 +27,7 @@ import CountLikes from './CountLikes.js';
 import { useState, useEffect } from 'react';
 import ExternalAIInsights from './ExternalData.js';
 import SliderCarousel from './SliderCarousel.js';
-
+import AddUser from './AddUser.js';
 function App() {
   let userArray = [
   {
@@ -62,6 +62,7 @@ function App() {
           <Link to="/insights">visit AI Insights</Link>
           <Link to="/shop">visit Shop</Link>
           <Link to="/users">visit Users</Link>
+          <Link to="/users/add">Add User</Link>
           <Link to="/books">visit Books</Link>
           <Link to="/secs">visit Seconds page</Link>
 
@@ -80,7 +81,9 @@ function App() {
       <Route path='/shop' element={<Shop /> } />
       <Route path='/' element={<Home /> } />
       <Route path='/users' element={<UserList userArr={userArray} /> } />
-      <Route path='/users/:id' element={<UserDetail userArr={userArray} /> } />
+      {/* <Route path='/users/:id' element={<UserDetail userArr={userArray} /> } /> */}
+      <Route path='/users/:id' element={<UserDetail /> } />
+      <Route path='/users/add' element={<AddUser /> } />
       <Route path='/books' element={<Library /> } />
       <Route path='/user-pic' element={<UserPic /> } />
       <Route path='/ai-reply' element={<AIParent /> } />
