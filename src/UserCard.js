@@ -3,7 +3,7 @@ import {
 } from 'react-router-dom';
 import './App.css';
 
-export default function UserCard({name, pic, id, delBtn}) {
+export default function UserCard({name, pic, id, delBtn, editBtn}) {
     
     let navigate = useNavigate()
     
@@ -16,6 +16,7 @@ export default function UserCard({name, pic, id, delBtn}) {
             </h2>
             <button onClick={() => navigate(`/users/${id}`)}>View Profile</button>
             {delBtn}
+            {editBtn}
         </section>
     )
 }

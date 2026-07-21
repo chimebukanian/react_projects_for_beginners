@@ -32,6 +32,7 @@ export default function UserList({userArr}) {
                 pic={user.pic}
                 id={user.id}
                 delBtn={<button onClick={() => delUser(user.id)}>Delete button</button>}
+                editBtn={<button onClick={() => navigate(`/users/edit/${user.id}`)}>Edit this user</button>}
                  />
             })}
         </div>
