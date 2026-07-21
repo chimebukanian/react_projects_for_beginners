@@ -27,6 +27,9 @@ import CountLikes from './CountLikes.js';
 import { useState, useEffect } from 'react';
 import ExternalAIInsights from './ExternalData.js';
 import SliderCarousel from './SliderCarousel.js';
+import AddUser from './AddUser.js';
+import AiSummary from './Aisummary.js';
+import EditUser from './EditUser.js';
 
 function App() {
   let userArray = [
@@ -58,20 +61,18 @@ function App() {
     <div className="App">
       <nav className='nav-list'>
           <Link to="/carousel">visit Carousel</Link>
+          <Link to="/Ai-summary">visit Ai summary</Link>
           <Link to="/ai-sug">visit Ai suggestion</Link>
           <Link to="/insights">visit AI Insights</Link>
           <Link to="/shop">visit Shop</Link>
           <Link to="/users">visit Users</Link>
+          <Link to="/users/add">Add User</Link>
           <Link to="/books">visit Books</Link>
           <Link to="/secs">visit Seconds page</Link>
-
       </nav>
 
           <button onClick={() => setShow(!show)}>Toggle {show ? "stop" : "start"}</button>
-
           {show ? <Timer /> : null}
-      
-    
     
       <Routes>
       <Route path='/ai-suggestion'   element={<AiSugg />} />
@@ -79,14 +80,19 @@ function App() {
       <Route path='/game' element={<Game />} />
       <Route path='/shop' element={<Shop /> } />
       <Route path='/' element={<Home /> } />
+
       <Route path='/users' element={<UserList userArr={userArray} /> } />
       <Route path='/users/:id' element={<UserDetail userArr={userArray} /> } />
+      <Route path='/users/add' element={<AddUser /> } />
+      <Route path='/users/edit/:id' element={<EditUser /> } />
+
       <Route path='/books' element={<Library /> } />
       <Route path='/user-pic' element={<UserPic /> } />
       <Route path='/ai-reply' element={<AIParent /> } />
       <Route path='/count-likes' element={<CountLikes /> } />
       <Route path='/insights' element={<ExternalAIInsights /> } />
       <Route path='/carousel' element={<SliderCarousel /> } />
+      <Route path='/Ai-summary' element={<AiSummary /> } />
       
       <Route path='*' element={<NotFound /> } />
       
