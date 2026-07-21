@@ -8,24 +8,21 @@ export default function UserList({userArr}) {
     let navigate = useNavigate()
 
     function getUsers() {
-        fetch("https://6a4b6df8f5eab0bb6b62c19e.mockapi.io/users")
+            fetch("https://6a4b6df8f5eab0bb6b62c19e.mockapi.io/users")
             .then((res) => res.json())
             .then((usableData) => setUsersFetched(usableData))
     }
+    useEffect(() => {
+        getUsers()
+    }, [])
 
-
-    useEffect(() => getUsers(), [])
-
-    function deleteUser(id) {
-        fetch(`https://6a4b6df8f5eab0bb6b62c19e.mockapi.io/users/${id}`,
-            {method: "DELETE"}
-        ).then((res) => res.json()).then((data) => getUsers())
-
+    function delUser(id) {
+        fetch(`https://6a4b6df8f5eab0bb6b62c19e.mockapi.io/users/${id}`, {
+            method: 'DELETE'
+        }).then((res) => res.json())
+        .then(() => getUsers())
     }
-
-    function edituser(id) {
-        navigate('')
-    }
+    
     return (
         <div className="user-list-container">
             {usersFetched.map((user, index)=> {
@@ -33,10 +30,9 @@ export default function UserList({userArr}) {
                 key={index}
                 name={user.name}
                 pic={user.pic}
-                id={user.id} 
-                delBtn = {<button onClick={() => deleteUser(user.id)}>Delete this user</button>}
-                editBtn = {<button onClick={() => edituser(user.id)}>Edit User</button>}
-                />
+                id={user.id}
+                delBtn={<button onClick={() => delUser(user.id)}>Delete button</button>}
+                 />
             })}
         </div>
     )

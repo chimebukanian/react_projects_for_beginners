@@ -28,9 +28,6 @@ import { useState, useEffect } from 'react';
 import ExternalAIInsights from './ExternalData.js';
 import SliderCarousel from './SliderCarousel.js';
 import AddUser from './AddUser.js';
-import AiSummary from './Aisummary.js';
-import EditUser from './EditUser.js';
-
 function App() {
   let userArray = [
   {
@@ -82,10 +79,9 @@ function App() {
       <Route path='/' element={<Home /> } />
 
       <Route path='/users' element={<UserList userArr={userArray} /> } />
-      <Route path='/users/:id' element={<UserDetail userArr={userArray} /> } />
+      {/* <Route path='/users/:id' element={<UserDetail userArr={userArray} /> } /> */}
+      <Route path='/users/:id' element={<UserDetail /> } />
       <Route path='/users/add' element={<AddUser /> } />
-      <Route path='/users/edit/:id' element={<EditUser /> } />
-
       <Route path='/books' element={<Library /> } />
       <Route path='/user-pic' element={<UserPic /> } />
       <Route path='/ai-reply' element={<AIParent /> } />

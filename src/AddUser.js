@@ -1,97 +1,92 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import {useFormik} from 'formik'
+import { useFormik } from "formik"
 import {object, string} from 'yup'
 
 export default function AddUser() {
-    // let [name, setName] = useState("")
-    // let [bio, setBio] = useState("")
-    // let [pic, setPic] = useState("")
-
-    
-    let addUser = (newUser) => {
-            // let newUser = {
-            //         name,
-            //         bio,
-            //         pic
-            //     }
-            
-                console.log(newUser)
-
-            fetch('https://6a4b6df8f5eab0bb6b62c19e.mockapi.io/users',
-            {
-            method: "POST",
-            headers: {
-                "Content-Type" : "application/json",
-            },
-            body: JSON.stringify(newUser)
+ 
+    // validation
+    let userValidationSchema = object(
+        {
+            name: string().required(),
+            pic: string().url().required(),
+            bio: string().min(10).required()
         }
-        ).then(() => navigate('/users'))
-    }
+    )
+
+    // easier to package and manage all state (data) in one place
+    let {handleBlur, handleChange, handleSubmit, errors, touched} = useFormik(
+        {
+            initialValues: {
+            name: 'goes in here', 
+            pic: '', 
+            bio: ''
+        },
+         onSubmit: (values) => {
+            addUser(values)
+         },
+         validationSchema: userValidationSchema
+         })
 
     let navigate = useNavigate()
 
-    let validationSchema = object({
-        name: string().required(),
-        pic: string().url().required(),
-        bio: string().min(10).required()
-    })
+    const addUser = (newUser) => {
 
-    const {handleBlur, handleChange, touched, errors, handleSubmit} = useFormik({
-        initialValues: {
-            name: "",
-            bio: "",
-            pic: ""
-        },
-        onSubmit: (values) => {
-            addUser(values)
+        console.log(newUser)
 
-        },
-        validationSchema,
-    })
+        fetch('https://6a4b6df8f5eab0bb6b62c19e.mockapi.io/users',
+            {
+            method:  'POST',
+            body: JSON.stringify(newUser),
+            headers: {"Content-Type": 'application/json'}
+        })
+        .then(() => navigate('/users') )
+
+    }
 
     return (
-        <div>
-            <h1>Add User</h1>
+        <div className="add-user-form">
+            <h2>Add User</h2>
 
             <form onSubmit={handleSubmit} className="add-user-form">
-                <input
-                onChange={handleChange}
-                onBlur={handleBlur}
-                 placeholder="Name" 
-                 required
-                 name="name"
-                 />
 
-                 {touched.name && errors.name ? <p>{errors.name}</p> : <br />}
-                    
-                    
-                <input
-                 placeholder="Bio"
-                onBlur={handleBlur}
-                 onChange={handleChange}
-                 required
-                 name="bio"
-                 />
-
-                {touched.bio && errors.bio ? <p>{errors.bio}</p> : <br />}
-        
-                <input
-                onBlur={handleBlur}
-                onChange={handleChange}
-                 placeholder="Pic" 
-                 name="pic"
-                 />
-
-                {touched.pic && errors.pic ?<p>{errors.pic}</p> : <br />}
+            <input 
+            // name prop is used with the initialValues
+            name="name" 
+            placeholder="Name"
+            onChange={handleChange}
+            onBlur={handleBlur} // touched property changes to true
+             />
+             <br />
+             <br />
+             {touched.name && errors.name ? <p>{errors.name}</p> : null}
+            <input 
+            name="pic"
+            placeholder="pic"
+            onChange={handleChange}
+            onBlur={handleBlur}
 
 
-                {/* <button type="submit" onClick={addUser}>Add user</button> */}
-                <button type="submit">Add user</button>
-{/*  */}
+             />
+                       <br />
+            {touched.pic && errors.pic ? <p>{ errors.pic}</p> : null}
 
-   
+            <input 
+            name="bio"
+            placeholder="Bio"
+            onChange={ handleChange}
+            onBlur={ handleBlur}
+             />
+             <br />
+             <br />
+            { touched.bio &&  errors.bio ? <p>{ errors.bio}</p> : null}
+            <button type="submit" >Submit New User</button>
+
+                {/* <p>errors</p>
+                <pre>{JSON.stringify( errors)}</pre> */}
             </form>
         </div>
     )
 }
+
+let greet = 'hello'

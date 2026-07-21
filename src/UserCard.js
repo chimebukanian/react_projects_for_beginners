@@ -14,7 +14,7 @@ export default function UserCard({name, pic, id, delBtn}) {
             <h2 className='user-name'>
                 Hello, <span className='user-first-name'>{name}</span>
             </h2>
-            <button onClick={() => navigate(`/users/${id}`)}>See more info</button>
+            <button onClick={() => navigate(`/users/${id}`)}>View Profile</button>
             {delBtn}
         </section>
     )
