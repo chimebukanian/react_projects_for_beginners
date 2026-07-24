@@ -29,7 +29,7 @@ import ExternalAIInsights from './ExternalData.js';
 import SliderCarousel from './SliderCarousel.js';
 import AddUser from './AddUser.js';
 import EditUser from './EditUser.js';
-// import AiSummary from
+import AIView from './AIView.js';
 
 function App() {
   let userArray = [
@@ -60,6 +60,7 @@ function App() {
   return (
     <div className="App">
       <nav className='nav-list'>
+          <Link to="/AI-view">visit AiView</Link>
           <Link to="/carousel">visit Carousel</Link>
           <Link to="/Ai-summary">visit Ai summary</Link>
           <Link to="/ai-sug">visit Ai suggestion</Link>
@@ -75,6 +76,7 @@ function App() {
           {show ? <Timer /> : null}
     
       <Routes>
+      <Route path='/AI-view' element={<AIView />} />
       <Route path='/ai-suggestion'   element={<AiSugg />} />
       <Route path='/ai-sug' element={<Navigate replace to="/ai-suggestion"  />} />
       <Route path='/game' element={<Game />} />
