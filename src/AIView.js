@@ -36,7 +36,7 @@ export default function AIView() {
             onChange={(event) => setPrompt(event.target.value)}
             />
             <br />
-            <button onClick={sendReq}>enter</button>
+            <button onClick={sendReq}>{loading ? "processing.." : "enter"}</button>
             {error && <p style={{color: 'red'}}>{error}</p>}
             {loading && <p>Generating response...</p>}
             {!loading && !error && <p>{response}</p>}
