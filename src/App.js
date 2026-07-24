@@ -30,6 +30,7 @@ import SliderCarousel from './SliderCarousel.js';
 import AddUser from './AddUser.js';
 import EditUser from './EditUser.js';
 import AIView from './AIView.js';
+import MyCarousel from './MyCarousel.js';
 
 function App() {
   let userArray = [
@@ -60,6 +61,7 @@ function App() {
   return (
     <div className="App">
       <nav className='nav-list'>
+          <Link to="/carousel">visit Carousel</Link>
           <Link to="/AI-view">visit AiView</Link>
           <Link to="/carousel">visit Carousel</Link>
           <Link to="/Ai-summary">visit Ai summary</Link>
@@ -76,6 +78,7 @@ function App() {
           {show ? <Timer /> : null}
     
       <Routes>
+      <Route path='/carousel' element={<MyCarousel />} />
       <Route path='/AI-view' element={<AIView />} />
       <Route path='/ai-suggestion'   element={<AiSugg />} />
       <Route path='/ai-sug' element={<Navigate replace to="/ai-suggestion"  />} />
