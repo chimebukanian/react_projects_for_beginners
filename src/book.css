@@ -1,0 +1,10 @@
+.book-card {
+    width: 300px;
+}
+.book-image {
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    height: 300px;
+    width: 200px;
+    border-radius: 14px;
+}

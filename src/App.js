@@ -15,7 +15,7 @@ import Home from './home.js';
 import UserDetail from './UserDetail.js';
 import UserCard from './UserCard.js';
 import UserList from './UserList.js';
-import Library from './Library.js';
+import Library from './BookLibrary.js';
 // import BookDetail from './BookDetail.js';
 import UserPic from './UserPic.js';
 import NotFound from './NotFound.js';
@@ -61,6 +61,7 @@ function App() {
   return (
     <div className="App">
       <nav className='nav-list'>
+          <Link to="/library">visit Library</Link>
           <Link to="/carousel">visit Carousel</Link>
           <Link to="/AI-view">visit AiView</Link>
           <Link to="/carousel">visit Carousel</Link>
@@ -78,6 +79,7 @@ function App() {
           {show ? <Timer /> : null}
     
       <Routes>
+      <Route path='/library' element={<Library />} />
       <Route path='/carousel' element={<MyCarousel />} />
       <Route path='/AI-view' element={<AIView />} />
       <Route path='/ai-suggestion'   element={<AiSugg />} />
